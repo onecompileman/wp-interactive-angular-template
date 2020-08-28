@@ -1,0 +1,24 @@
+/*
+* RESET RULES
+*/
+
+html {
+	box-sizing: border-box;
+	// overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+body {
+	font-family: 'Work Sans Light', sans-serif;
+}
+
+button:focus {
+	outline: none;
+}

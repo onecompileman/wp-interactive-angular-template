@@ -1,0 +1,92 @@
+name: CI CD Pipeline
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Copy .env
+        run: |
+          printf "
+           APP_NAME=Laravel
+           APP_ENV=local
+           APP_KEY=base64:whg2X7xPAWH/nofFfAIeMlkfzRakscXeAzRCcn6uVB4=
+           APP_DEBUG=true
+           APP_URL=http://localhost
+
+           LOG_CHANNEL=stack
+
+           DB_CONNECTION=mysql
+           DB_HOST=127.0.0.1
+           DB_PORT=3306
+           DB_DATABASE=laravel
+           DB_USERNAME=root
+           DB_PASSWORD=
+
+           BROADCAST_DRIVER=log
+           CACHE_DRIVER=file
+           QUEUE_CONNECTION=sync
+           SESSION_DRIVER=file
+           SESSION_LIFETIME=120
+
+           REDIS_HOST=127.0.0.1
+           REDIS_PASSWORD=null
+           REDIS_PORT=6379
+
+           MAIL_MAILER=smtp
+           MAIL_HOST=smtp.mailtrap.io
+           MAIL_PORT=2525
+           MAIL_USERNAME=null
+           MAIL_PASSWORD=null
+           MAIL_ENCRYPTION=null
+           MAIL_FROM_ADDRESS=null
+           MAIL_FROM_NAME="${APP_NAME}"
+
+           AWS_ACCESS_KEY_ID=
+           AWS_SECRET_ACCESS_KEY=
+           AWS_DEFAULT_REGION=us-east-1
+           AWS_BUCKET=
+
+           PUSHER_APP_ID=
+           PUSHER_APP_KEY=
+           PUSHER_APP_SECRET=
+           PUSHER_APP_CLUSTER=mt1
+
+           MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+           MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+           APP_API_HOST=54.179.229.251
+           APP_API_TOKEN=${{ secrets.APP_API_TOKEN }}
+           APP_API_HOST=https://dev-cms.webplay.ph" > .env
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies and build
+        run: cd resources/frontend && npm install && npm run build-mac
+
+
+      - name: Deploy Project to FTP
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: ftps://ftp.360selfieph.com:21/pcp.360selfieph.com
+          ftp-username: adminselfie
+          ftp-password: ${{ secrets.FTP_PASSWORD }}

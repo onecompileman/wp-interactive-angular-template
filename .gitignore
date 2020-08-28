@@ -1,0 +1,17 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/resources/frontend/dist
+/resources/frontend/node_modules
+/resources/views/frontend.blade.php
+/public/frontend
+composer.lock

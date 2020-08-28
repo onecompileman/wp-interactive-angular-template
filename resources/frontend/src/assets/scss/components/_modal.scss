@@ -1,0 +1,110 @@
+.#{ $style-prefix }-modal {
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    &--xs {
+        @include respond-above(575px) {
+            max-width: 454px;
+        }
+    }
+
+    &__close {
+        width: 40px;
+        height: 40px;
+        background: $linear-gold;
+        border-radius: 100%;
+        border: none;
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        color: #4e3b1d;
+        font-size: 24px;
+        z-index: 2;
+    }
+
+    &__body {
+        padding: 50px 20px;
+    }
+
+    &--custom-md {
+        @include respond-above(md) {
+            min-width: 556px;
+        }
+    }
+
+    &--dark {
+        .modal-content {
+            background-color: $primary;
+            color: #fff;
+        }
+    }
+
+    &--dark-w-opacity {
+        .modal-content {
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+        }
+    }
+
+    &__attendee-modal {
+        @include respond-above(575px) {
+            margin-left: 20px;
+        }
+    }
+
+    &__brand-rep-modal {
+        @include respond-above(576px) {
+            max-width: 100%;
+            margin: 0.5rem;
+        }
+
+        @include respond-above(740px) {
+            max-width: 732px;
+            margin: 1.75rem auto;
+        }
+    }
+
+    &__research-hall-modal {
+        @include respond-above(360px) {
+            width: 60%;
+            max-width: 60%;
+            margin: 2rem 1rem;
+        }
+
+        @include respond-above(840px) {
+            // width: 100%;
+            max-width: 100%;
+            margin: 2.2rem;
+        }
+    }
+
+    &__speaker-info-modal {
+        max-width: 532px;
+        .modal-content {
+            border: 1px solid $secondary;
+        }
+    }
+
+    &__brochure-vp-modal {
+        @include respond-above(576px) {
+            max-width: 100%;
+            margin: 2rem;
+        }
+
+        @include respond-above(850px) {
+            max-width: 842px;
+            margin: 1.75rem auto;
+        }
+    }
+}
+
+.modal-lg {
+    max-width: 960px !important;
+    padding: 10px;
+}
+
+.modal-xl {
+    max-width: 1200px !important;
+    padding: 10px;
+}

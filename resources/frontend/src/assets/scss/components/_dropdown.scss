@@ -1,0 +1,44 @@
+.#{ $style-prefix }-dropdown {
+
+    width: 100%;
+
+    .dropdown-item {
+        color: #fff;
+        padding: 10px 24px;
+
+        &:hover {
+            background-color: darken(#333333, 5%);
+        }
+    }
+
+    &__btn,
+    &__btn:focus,
+    &__btn:hover {
+        background-color: rgba(77, 77, 77, 0.5);
+        border: 1px solid #333333;
+        border-radius: 10px;
+        box-shadow: none;
+        color: #fff;
+    }
+
+    &__btn {
+        outline: none;
+        text-align: left;
+        padding: 10px 20px;
+
+        &::after {
+            color: $secondary;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+        }
+    }
+
+    &__ul {
+        width: 100%;
+        background: #333333;
+        padding: 0;
+    }
+
+}

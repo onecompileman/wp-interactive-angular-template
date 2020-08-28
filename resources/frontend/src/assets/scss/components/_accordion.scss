@@ -1,0 +1,54 @@
+@import '../config';
+
+.#{ $style-prefix}-accordion {
+    .panel-heading {
+        background-color: #313131;
+        color: #acacac;
+        border: none;
+        padding: 0;
+    }
+
+    .panel-collapse {
+        background-color: #171717;
+        border: 1px solid #acacac;
+    }
+
+    .panel {
+        border: none;
+    }
+
+    &--active {
+        .panel-heading {
+            background: $linear-gold;
+            color: #333;
+            border: none;
+        }
+    }
+
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        padding: 10px;
+    }
+
+    &__toggle {
+        height: 100%;
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 2px solid $secondary;
+    }
+}
+
+// .accordion-toggle[aria-expanded='true']:before {
+//     content: '\f107';
+//     font: normal bold normal 18px/1 FontAwesome;
+// }
+
+// .accordion-toggle[aria-expanded='false']:before {
+//     content: '\f106';
+//     font: normal bold normal 18px/1 FontAwesome;
+// }

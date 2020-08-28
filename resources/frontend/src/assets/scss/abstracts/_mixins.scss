@@ -1,0 +1,184 @@
+@import "../config/breakpoints";
+
+@mixin respond-above($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		$breakpoint-value: map-get($breakpoints, $breakpoint);
+
+		@media (min-width: $breakpoint-value) {
+			@content;
+		}
+	} @else {
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+	}
+}
+
+@mixin  registerModalTitle {
+	margin: 0;
+	text-align: center;
+	font-family: 'Montserrat Semi Bold', sans-serif;
+}
+
+@mixin schduleModalTitle {
+	font-size: 22px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+}
+
+@mixin overflowEllipsis {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin floatLabel {
+	font-size: 12px;
+	transform: translate3d(0, -135%, 0);
+	opacity: 1 !important;
+	font-family: 'Work Sans', sans-serif;
+	background-color: #fff;
+	color: #C89B32 !important;
+}
+
+@mixin sideButton {
+	position: absolute;
+    background: rgba(0, 0, 0, 0.75);
+    -webkit-backdrop-filter: blur(59px);
+    backdrop-filter: blur(59px);
+    color: #fff;
+    padding: 9px 16px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+}
+
+@mixin profileIconWrapper {
+	background-color: #464646;
+	padding: 10px;
+	border-radius: 100%;
+	margin-right: 15px;
+}
+
+@mixin customScroll {
+	&::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 7px;
+
+		background-color: #828282;
+	}
+}
+
+@mixin darkSearchInput() {
+	background: rgba(77, 77, 77, 0.5);
+	border: 1px solid #333333;
+	border-radius: 10px;
+	padding-left: 40px;
+	color: #fff;
+	height: 45px;
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	&::placeholder {
+		color: #828282;
+	}
+}
+
+@mixin gradientText {
+	background-color: transparent;
+	background: linear-gradient(
+		90deg,
+		#f9f295 -83.56%,
+		#e0aa3e -6.45%,
+		#e7bd6a 110.15%,
+		#faf398 135.25%,
+		#faf398 163.7%,
+		#b88a44 180.82%
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+@mixin chatBotModalHeader {
+	display: flex;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 21px;
+}
+
+@mixin chatBotBox {
+	background: #333333;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px;
+	height: 123px;
+	cursor: pointer;
+}
+
+@mixin brochureAVPHeader {
+	padding: 15px 20px;
+	border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+	font-size: 18px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+
+	@include respond-above(850px) {
+		padding: 20px 32px;
+		font-size: 28px;
+	}
+}
+
+@mixin loadingText {
+	font-family: 'Montserrat Semi Bold', sans-serif;
+	letter-spacing: 2px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+}
+
+@mixin sideTimerBox {
+	background: rgba(0, 0, 0, 0.73);
+	backdrop-filter: blur(59px);
+	width: 100%;
+	color: #fff;
+	border-radius: 0px 0px 0px 13px;
+	padding: 16px;
+}
+
+@mixin menuToggle() {
+	background: rgba(0, 0, 0, 0.73);
+	width: 50px;
+	height: 50px;
+	color: $secondary;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 0 15px;
+	font-size: 22px;
+}
+
+@mixin toggleOverlay {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #bfb9b973;
+	z-index: 999;
+
+	@include respond-above($toggleWidth) {
+		width: 0;
+	}
+}
