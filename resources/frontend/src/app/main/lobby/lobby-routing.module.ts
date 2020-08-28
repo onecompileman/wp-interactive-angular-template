@@ -4,6 +4,7 @@ import { LobbyComponent } from './lobby.component';
 import { BoothComponent } from './booth/booth.component';
 import { PlenaryStreamComponent } from './plenary-stream/plenary-stream.component';
 import { BreakoutStreamComponent } from './breakout-stream/breakout-stream.component';
+import { SymposiaStreamComponent } from './symposia-stream/symposia-stream.component';
 
 const routes: Routes = [
 	{
@@ -21,6 +22,10 @@ const routes: Routes = [
 			{
 				path: 'breakout-stream',
 				component: BreakoutStreamComponent
+			},
+			{
+				path: 'symposia-stream',
+				component: SymposiaStreamComponent
 			}
 		]
 	}
