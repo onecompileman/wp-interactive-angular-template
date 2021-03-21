@@ -15,3 +15,5 @@ yarn-error.log
 /resources/views/frontend.blade.php
 /public/frontend
 composer.lock
+
+*.pem
