@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 
 export function RestangularConfigFactory(RestangularProvider) {
 	RestangularProvider.setBaseUrl(environment.api.endpoint);
-	RestangularProvider.setPlainByDefault();
+	RestangularProvider.setPlainByDefault(true);
 	RestangularProvider.setDefaultHeaders({
 		'X-CSRF-TOKEN': document.querySelector('meta[name="csrf"]').getAttribute('content')
 	});
