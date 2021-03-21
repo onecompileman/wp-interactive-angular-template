@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
-import { AnalyticsDataService } from './analytics-data.service';
+import { AnalyticsDataService } from '../data-services/analytics-data.service';
 import { UiService } from './ui.service';
 import { WebsocketChannels } from 'src/app/shared/enums/websocket-channels.enum';
 import { PushNotificationService } from './push-notification.service';
