@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 import { AnalyticsDataService } from './analytics-data.service';
+import { UiService } from './ui.service';
+import { WebsocketChannels } from 'src/app/shared/enums/websocket-channels.enum';
+import { PushNotificationService } from './push-notification.service';
+import { noop } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class WebsocketService {
   eventCallback: Function = (e) => {};
 
-  constructor(private analyticsDataService: AnalyticsDataService) {
-  }
+  constructor(
+    private analyticsDataService: AnalyticsDataService,
+    private uiService: UiService,
+    private pushNotifService: PushNotificationService
+  ) {}
 
   initWebsocket() {
     if (!window['changeLocation']) {
@@ -124,5 +130,53 @@ export class WebsocketService {
         }
       };
     }
+  }
+
+  changeLocation(location: string, channel?:string): void {
+    if (!!channel) {
+      this.setEventCallback(channel);
+      window['changeLocation'](location, channel);
+    } else {
+      window['changeLocation'](location);
+    }
+  }
+
+  setEventCallback(channel: string): void {
+    switch(channel) {
+      case WebsocketChannels.LOBBY:
+        this.setLobbyEventCallback();
+        return;
+      case WebsocketChannels.LIVESTREAM:
+        this.setLivestreamEventCallback();
+        return;
+    }
+  }
+
+  setLobbyEventCallback(): void {
+    this.eventCallback = e => {
+      switch(e.payload.target) {
+        case 'auditorium':
+          this.uiService.setLivestreamAvailability(e.payload.state);
+          break;
+        case 'lobbyState':
+          this.uiService.setLobbyAvailability(e.payload.state);
+          break;
+        case 'bgm':
+          this.uiService.setLobbyBgmState(e.payload.state);
+          break;
+        case 'modal':
+          if (e.payload.action === 'show') {
+            this.pushNotifService.setData(e.payload);
+          }
+          this.pushNotifService.toggle(e.payload.action === 'show');
+          break;
+        default: noop();
+          break;
+      }
+    };
+  }
+
+  setLivestreamEventCallback(): void {
+    this.eventCallback = e => {};
   }
 }
