@@ -5,11 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 import { TooltipModule, TooltipConfig } from 'ngx-bootstrap/tooltip';
 
+import * as fromModals from './modals';
+import * as fromComponents from './components';
+import * as fromPipes from './pipes';
+
 @NgModule({
-	declarations: [],
+	declarations: [
+		...fromModals.modals,
+		...fromComponents.components,
+		...fromPipes.pipes
+	],
 	imports: [
 		AccordionModule.forRoot(),
 		BsDropdownModule.forRoot(),
@@ -19,7 +26,14 @@ import { TooltipModule, TooltipConfig } from 'ngx-bootstrap/tooltip';
 		CommonModule,
 		ModalModule.forRoot()
 	],
-	exports: [ AccordionModule, TooltipModule, ReactiveFormsModule, FormsModule ],
+	exports: [
+		...fromComponents.components,
+		...fromPipes.pipes,
+		AccordionModule, 
+		TooltipModule, 
+		ReactiveFormsModule, 
+		FormsModule 
+	],
 	providers: [ TooltipConfig ]
 })
 export class SharedModule {}

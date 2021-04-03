@@ -7,21 +7,14 @@ const routes: Routes = [
 		path: '',
 		loadChildren: () => import('././main/main.module').then((m) => m.MainModule),
 		data: {
-			pageTitle: 'PCP Convention'
-		}
-	},
-	{
-		path: 'lobby',
-		loadChildren: () => import('././main/lobby/lobby.module').then((m) => m.LobbyModule),
-		data: {
-			pageTitle: 'PCP Convention'
+			pageTitle: 'Manulife'
 		}
 	},
 	{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-	imports: [ RouterModule.forRoot(routes) ],
+	imports: [ RouterModule.forRoot(routes, { useHash: true}) ],
 	exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
