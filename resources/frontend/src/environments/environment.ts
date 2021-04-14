@@ -4,6 +4,7 @@
 
 export const environment = {
 	production: false,
+    appPrefix: '',
     talkJs: {
         appId: 'tkcoPA06',
         secretKey: 'sk_test_KgCO7bGedkypkQ15rwoJnqPP',
