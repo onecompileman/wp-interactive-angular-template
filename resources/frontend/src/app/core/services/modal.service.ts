@@ -170,8 +170,7 @@ export class ModalService {
         const modalNames = {
           [Modals.WELCOME]: 'welcome',
           [Modals.PUSH]: 'push',
-          [Modals.LIVESTREAM]: 'livestream',
-          [Modals.SPOUSE_WORKSHOP]: 'workshop'
+          [Modals.LIVESTREAM]: 'livestream'
         };
         return modalNames[modalOrder];
     }
