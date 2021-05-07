@@ -141,6 +141,9 @@ export class ModalService {
     }
 
     openHallStatusModal(): void {
+        if (this.namedModalRefs['livestream']) {
+            return;
+        }
         // TODO: call hall status modal
         // this.namedModalRefs['livestream'] = 
     }
