@@ -4,6 +4,7 @@ import { LobbyComponent } from './lobby.component';
 import { BoothComponent } from './booth/booth.component';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { LandingLobbyComponent } from './landing-lobby/landing-lobby.component';
+import { LobbyDeactivateGuard } from '../core/guards/lobby.deactivate-guard';
 
 const routes: Routes = [
 	{
@@ -12,7 +13,8 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'home',
-				component: LandingLobbyComponent
+				component: LandingLobbyComponent,
+				canDeactivate: [ LobbyDeactivateGuard ]
 			},
 			{
 				path: 'booth',
