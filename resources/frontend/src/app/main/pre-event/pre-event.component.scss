@@ -1,0 +1,118 @@
+@import '~src/assets/scss/config';
+@import '~src/assets/scss/theme-config';
+
+.#{ $style-prefix }-pre-event {
+    min-height: 100vh;
+    height: var(--app-height);
+    width: 100%;
+    overflow: auto;
+    background-color: $primary;
+
+    &__body {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+
+        @include respond-above(sm) {
+            padding: 0 2em;
+        }
+    }
+
+    &__btn {
+        margin: 0 auto;
+        display: block;
+
+        @media screen and (max-width: 600px) {
+            font-size: .65em;
+            width: 100%;
+        }
+    }
+
+    &__countdown {
+        @media screen and (max-width: 600px) {
+            font-size: .4em;
+        }
+    }
+
+    &__division {
+        padding: 1.5em 1em;
+
+        @include respond-above(sm) {
+            padding: 4em 2.5em;
+        }
+
+        &--left {
+            background-color: $white;
+
+            img {
+                width: 9em;
+                margin: 0 auto 1em;
+                display: block;
+                max-width: 100%;
+
+                @include respond-above(sm) {
+                    width: 19em;
+                    margin: 0 auto 2em;
+                }
+            }
+        }
+
+        &--right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 9em;
+                margin: 0 auto;
+                max-width: 100%;
+
+                @include respond-above(sm) {
+                    width: 28em;
+                }
+
+                &:first-of-type {
+                    display: none;
+
+                    @include respond-above(sm) {
+                        display: block;
+                    }
+                }
+
+                &:last-of-type {
+                    display: block;
+
+                    @include respond-above(sm) {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &__row {
+        @media screen and (max-width: 600px) {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__text {
+        color: $primary;
+        font-size: .6em;
+        letter-spacing: 0.125em;
+        margin: 2em auto 0;
+        text-align: center;
+        @include font(akira);
+
+        @include respond-above(sm) {
+            font-size: .8em;
+        }
+    }
+
+    &__wrapper {
+        width: 69em;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+}

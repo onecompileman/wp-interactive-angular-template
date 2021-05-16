@@ -1,0 +1,39 @@
+<div class="tvf-pre-event">
+    <tvf-header [moduleName]="moduleLocation.MAIN"></tvf-header>
+    <div class="tvf-pre-event__body">
+        <div class="row no-gutters tvf-pre-event__row tvf-pre-event__wrapper">
+            <div
+                class="col-sm-5 tvf-pre-event__division tvf-pre-event__division--left"
+            >
+                <img src="assets/images/todo-saya-logo.png" />
+                <div class="tvf-countdown tvf-pre-event__countdown">
+                    <div class="tvf-countdown__item">
+                        <h1 class="tvf-countdown__heading">{{ days }}</h1>
+                        <span class="tvf-countdown__label">Days</span>
+                    </div>
+                    <div class="tvf-countdown__item">
+                        <h1 class="tvf-countdown__heading">{{ hours }}</h1>
+                        <span class="tvf-countdown__label">Hours</span>
+                    </div>
+                    <div class="tvf-countdown__item">
+                        <h1 class="tvf-countdown__heading">{{ minutes }}</h1>
+                        <span class="tvf-countdown__label">Minutes</span>
+                    </div>
+                    <div class="tvf-countdown__item">
+                        <h1 class="tvf-countdown__heading">{{ seconds }}</h1>
+                        <span class="tvf-countdown__label">Seconds</span>
+                    </div>
+                </div>
+                <p class="tvf-pre-event__text">MAY 20, 2021 | 3:00 PM</p>
+                <!-- <button class="tvf-btn tvf-pre-event__btn">REGISTER</button> -->
+            </div>
+            <div
+                class="col-sm-7 tvf-pre-event__division tvf-pre-event__division--right"
+            >
+                <img src="assets/images/todo-cinco-main.png" />
+                <img src="assets/images/todo-cinco-main-sm.png" />
+            </div>
+        </div>
+    </div>
+    <tvf-footer></tvf-footer>
+</div>
