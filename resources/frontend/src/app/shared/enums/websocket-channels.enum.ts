@@ -1,6 +1,6 @@
 export enum WebsocketChannels {
   LOBBY = 'lobby',
-  LIVESTREAM = 'livestream'
+  LIVESTREAM = 'auditorium'
 }
 
 export enum WebsocketLocations {
