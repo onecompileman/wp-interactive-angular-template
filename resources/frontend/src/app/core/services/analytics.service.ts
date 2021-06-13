@@ -18,7 +18,9 @@ export class AnalyticsService {
     }
 
     clickEvent(subject: string): void {
-        window['clientEvent'](window['currentLocation'], `click ${subject}`);
-        this.pushGA('click', `${subject}`);
+        if (!!window['clientEvent']) {
+            window['clientEvent'](window['currentLocation'], `click ${subject}`);
+            this.pushGA('click', `${subject}`);            
+        }
     }
 }
