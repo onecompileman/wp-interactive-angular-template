@@ -5,6 +5,7 @@ import {
     UrlTree
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
@@ -22,10 +23,11 @@ export class AuthGuard implements CanActivate {
         | boolean
         | UrlTree {
 
-        if (localStorage.getItem('tvf.user-id')) {
+        if (localStorage.getItem(`${environment.appPrefix}.user-id`)) {
             return true;
         }
 
+        // TODO: redirect to home page
         return this.router.parseUrl('tv5');
     }
 }
