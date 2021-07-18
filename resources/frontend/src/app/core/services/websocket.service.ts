@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
-import { AnalyticsDataService } from '../data-services/analytics-data.service';
-import { UiService } from './ui.service';
-import { WebsocketChannels } from 'src/app/shared/enums/websocket-channels.enum';
-import { PushNotificationService } from './push-notification.service';
 import { noop } from 'rxjs';
+import { WebsocketChannels } from 'src/app/shared/enums/websocket-channels.enum';
+import { environment } from 'src/environments/environment';
+import { AnalyticsDataService } from '../data-services/analytics-data.service';
+import { PushNotificationService } from './push-notification.service';
+import { UiService } from './ui.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class WebsocketService {
@@ -161,7 +161,7 @@ export class WebsocketService {
         case 'auditorium':
           this.uiService.setLivestreamAvailability(e.payload.state);
           break;
-        case 'lobbyState':
+        case 'lobby':
           this.uiService.setLobbyAvailability(e.payload.state);
           break;
         case 'bgm':
