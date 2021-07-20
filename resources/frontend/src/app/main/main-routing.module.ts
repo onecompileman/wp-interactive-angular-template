@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { EventGuard } from '../core/guards/event.guard';
 import { LandingComponent } from './landing/landing.component';
 import { MainComponent } from './main.component';
 import { ModalsComponent } from './modals/modals.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
             },
             {
                 path: 'app',
-                component: LandingComponent
+                component: LandingComponent,
+                canActivate: [EventGuard]
             },
             {
                 path: 'modals',
