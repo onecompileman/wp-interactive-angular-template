@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
+import { Settings } from '../../shared/models/settings.model';
+import { UserDataService } from '../data-services/user.data-service';
 import { PushNotificationService } from './push-notification.service';
 import { UiService } from './ui.service';
-import { UserDataService } from '../data-services/user.data-service';
-import { Settings } from '../../shared/models/settings.model';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
@@ -63,5 +63,21 @@ export class SettingsService {
         return this.settings
             .asObservable()
             .pipe(map((settings) => settings.program.start_at));
+    }
+
+
+    updateProgramDate(): void {
+        this.userDataService.appState().pipe(
+            take(1),
+            map((res) => res.data.event))
+            .subscribe(settings => {
+                this.uiService.setProgramState({
+                    ...settings.program,
+                    start_at: (settings.program.start_at || '').replace(
+                        /-/g,
+                        '/'
+                    ),
+                });
+            });
     }
 }

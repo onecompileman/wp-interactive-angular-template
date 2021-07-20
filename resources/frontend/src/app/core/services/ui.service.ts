@@ -10,6 +10,8 @@ export class UiService {
   livestreamAvailabilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   lobbyAvailabilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   lobbyBgmSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  emojiSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  programSubject: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor() { }
 
@@ -63,6 +65,32 @@ export class UiService {
 
   getLobbyBgmState(): boolean {
     return this.lobbyBgmSubject.getValue();
+  }
+
+  // EMOJI
+  setEmojiState(state: boolean): void {
+    this.emojiSubject.next(state);
+  }
+
+  getEmojiState$(): Observable<boolean> {
+    return this.emojiSubject.asObservable();
+  }
+
+  getEmojiState(): boolean {
+    return this.emojiSubject.getValue();
+  }
+
+  // Program
+  setProgramState(program): void {
+    this.programSubject.next(program);
+  }
+
+  getProgramState(): any {
+    return this.programSubject.getValue();
+  }
+
+  getProgramState$(): Observable<any> {
+    return this.programSubject.asObservable();
   }
 
 }

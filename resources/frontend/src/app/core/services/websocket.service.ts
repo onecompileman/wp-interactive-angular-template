@@ -6,6 +6,7 @@ import { WebsocketChannels } from 'src/app/shared/enums/websocket-channels.enum'
 import { environment } from 'src/environments/environment';
 import { AnalyticsDataService } from '../data-services/analytics-data.service';
 import { PushNotificationService } from './push-notification.service';
+import { SettingsService } from './settings.service';
 import { UiService } from './ui.service';
 
 
@@ -16,7 +17,8 @@ export class WebsocketService {
   constructor(
     private analyticsDataService: AnalyticsDataService,
     private uiService: UiService,
-    private pushNotifService: PushNotificationService
+    private pushNotifService: PushNotificationService,
+    private settingsService: SettingsService
   ) {}
 
   initWebsocket() {
@@ -167,6 +169,9 @@ export class WebsocketService {
         case 'bgm':
           this.uiService.setLobbyBgmState(e.payload.state);
           break;
+        case 'program-update':
+          this.settingsService.updateProgramDate();
+          break;
         case 'modal':
           if (e.payload.action === 'show') {
             this.pushNotifService.setData(e.payload);
@@ -180,6 +185,14 @@ export class WebsocketService {
   }
 
   setLivestreamEventCallback(): void {
-    this.eventCallback = e => {};
+    this.eventCallback = e => {
+      switch(e.payload.target) {
+        case 'emoji':
+          this.uiService.setEmojiState(e.payload.state);
+          break;
+        default: noop();
+          break;
+      }
+    };
   }
 }
