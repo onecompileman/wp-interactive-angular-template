@@ -144,6 +144,10 @@ export class WebsocketService {
     } else {
       window['changeLocation'](location);
     }
+
+    if (window['clientPing']) {
+        window['clientPing']();
+    }
   }
 
   setEventCallback(channel: string): void {
