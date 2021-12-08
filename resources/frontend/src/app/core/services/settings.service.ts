@@ -16,12 +16,16 @@ export class SettingsService {
         private pushNotifService: PushNotificationService
     ) {}
 
-    getAppSettings(): Observable<any> {
+    getAppSettings$(options?: { skipUpdatingStore: boolean }): Observable<any> {
         return this.userDataService.appState().pipe(
             take(1),
             map((res) => res.data.event),
             tap((settings) => {
                 this.settings.next(settings);
+
+                if (!!options && options.skipUpdatingStore) {
+                    return;
+                }
 
                 // LOBBY STATE
                 this.uiService.setLobbyAvailability(

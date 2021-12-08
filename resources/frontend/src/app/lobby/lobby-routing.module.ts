@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth.guard';
+import { LivestreamGuard } from '../core/guards/livestream.guard';
 import { LobbyDeactivateGuard } from '../core/guards/lobby.deactivate-guard';
 import { BoothComponent } from './booth/booth.component';
 import { LandingLobbyComponent } from './landing-lobby/landing-lobby.component';
@@ -24,7 +25,8 @@ const routes: Routes = [
 			},
 			{
 				path: 'livestream',
-				component: LivestreamComponent
+				component: LivestreamComponent,
+                canActivate: [LivestreamGuard]
 			}
 		]
 	}
