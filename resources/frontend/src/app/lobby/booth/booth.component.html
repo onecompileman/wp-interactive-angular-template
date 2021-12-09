@@ -1,3 +1,29 @@
-<p>
-  booth works!
-</p>
+<div class="app-booth" style="overflow: hidden;" #parentContainer>
+  <div class="h-100 w-100" id="booth">
+    <div class="app-booth__image-base" #imageBase>
+      <div class="position-relative w-100 h-100">
+        <span
+          class="app-booth__image-container w-100 h-100"
+          #boothImage
+        >
+        </span>
+
+        <span class="app-booth__bg-container" #backgroundImage>
+        </span>
+
+        <!-- HOTSPOTS -->
+      </div>
+    </div>
+  </div>
+
+  <div class="app-booth__loading-cover" *ngIf="isLoadingImages">
+    <div>
+      <img
+        src="assets/images/loading-white.gif"
+        class="app-booth__loading-img"
+      />
+      <span>Please wait while the booth is loading...</span>
+    </div>
+  </div>
+</div>
+

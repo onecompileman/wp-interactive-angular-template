@@ -1,8 +1,9 @@
 // Theme Colors
-$primary: #0e1013 !default;
-$secondary: #ECD193 !default;
+$primary: #1714C8 !default;
+$dark: #242424 !default;
+$danger: #DE4141 !default;
+$gradient: linear-gradient(90deg, #768F39 -16.02%, #D3C453 16.95%, #E4A945 44.12%, #E27B43 75.71%, #D95353 97.74%, #C05D92 125.01%);
 
-$linear-gold: linear-gradient(90deg, #F9F295 -83.56%,
- #E0AA3E -6.45%, #E7BD6A 36.24%,
- #FAF398 85.81%, #FAF398 120.23%,
- #B88A44 180.82%);
+$secondary: #483729 !default;
+$warning: #C4B39C !default;
+$light: #F1E4CE !default;

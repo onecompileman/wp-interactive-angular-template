@@ -1,0 +1,56 @@
+@import '~src/assets/scss/config';
+@import '~src/assets/scss/theme-config';
+
+.#{ $style-prefix }-booth {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+
+  &__bg-container {
+    @include absoluteMiddle;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  &__hotspot-info {
+    transform: scale(1) !important;
+  }
+
+  &__image-base {
+    @include absoluteMiddle;
+    width: 100%;
+  }
+
+  &__image-container {
+    @include absoluteMiddle;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: contain;
+    z-index: 1;
+  }
+
+  &__loading-cover {
+    background-color: $primary;
+    color: $white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+  }
+
+  &__loading-img {
+    display: block;
+    margin: 0 auto 12px;
+    width: 8vh;
+  }
+}

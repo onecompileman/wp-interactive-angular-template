@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { LivestreamGuard } from '../core/guards/livestream.guard';
 import { LobbyDeactivateGuard } from '../core/guards/lobby.deactivate-guard';
+import { BoothInfoResolver } from '../core/resolvers/booth-info.resolver';
+import { BoothsResolver } from '../core/resolvers/booths.resolver';
 import { BoothComponent } from './booth/booth.component';
 import { LandingLobbyComponent } from './landing-lobby/landing-lobby.component';
 import { LivestreamComponent } from './livestream/livestream.component';
@@ -13,6 +15,7 @@ const routes: Routes = [
 		path: '',
 		component: LobbyComponent,
 		// canActivate: [AuthGuard],
+		resolve: [BoothsResolver],
 		children: [
 			{
 				path: 'home',
@@ -20,8 +23,11 @@ const routes: Routes = [
 				// canDeactivate: [ LobbyDeactivateGuard ]
 			},
 			{
-				path: 'booth',
-				component: BoothComponent
+				path: 'booth/:id',
+				component: BoothComponent,
+				resolve: {
+					booth: BoothInfoResolver
+				}
 			},
 			{
 				path: 'livestream',

@@ -1,0 +1,21 @@
+export enum NavItem {
+    PROGRAM_SCHED = 'Program Schedule',
+    LEADERSHIP_MEETING = 'Leadership Meeting',
+    MAIN_HALL = 'Main Hall',
+    BREAKOUT_HALL = 'Breakout Hall',
+    PHOTOBOOTH = 'Photobooth',
+    GAME_STATION = 'Game Station',
+    COMMITMENT_WALL = 'Commitment Wall',
+    MOSAIC_WALL = 'Mosaic Wall',
+    LIBRARY = 'Library',
+    PLATFORM_TUTORIAL = 'Platform Tutorial',
+    SIGN_OUT = 'Sign out',
+    BOOTH_COOP = 'COOP',
+    BOOTH_CULTURE = 'Culture',
+    BOOTH_FINANCE = 'Finance',
+    BOOTH_LEGAL_COMPLIANCE = 'Legal and Compliance',
+    BOOTH_DIGITAL_TEAM = 'Digital Team',
+    BOOTH_PFIZER_FOUNDATION = 'Pfizer Foundation',
+    BOOTH_FLEET_SAFETY = 'Fleet & Safety',
+    BOOTH_BUSINESS_CONT_P = 'Business Continuity Plan'
+}

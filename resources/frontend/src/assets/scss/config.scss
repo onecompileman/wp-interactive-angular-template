@@ -1,6 +1,7 @@
-$style-prefix: 'pcp';
+$style-prefix: 'app';
 
 @import 'theme-config';
 
+@import './abstracts/animations';
 @import './abstracts/variables';
 @import './abstracts/mixins';
