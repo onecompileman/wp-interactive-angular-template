@@ -12,12 +12,12 @@ const routes: Routes = [
 	{
 		path: '',
 		component: LobbyComponent,
-		canActivate: [AuthGuard],
+		// canActivate: [AuthGuard],
 		children: [
 			{
 				path: 'home',
 				component: LandingLobbyComponent,
-				canDeactivate: [ LobbyDeactivateGuard ]
+				// canDeactivate: [ LobbyDeactivateGuard ]
 			},
 			{
 				path: 'booth',
