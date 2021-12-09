@@ -163,7 +163,7 @@ export class ModalService {
         }
     
         // TODO: call welcome modal
-        this.namedModalRefs['welcome'] = 
+        // this.namedModalRefs['welcome'] = 
     }
 
     private getModalKey(modalOrder: number): string {
