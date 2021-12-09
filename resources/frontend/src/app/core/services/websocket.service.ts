@@ -138,16 +138,16 @@ export class WebsocketService {
     }
 
     changeLocation(location: string, channel?: string): void {
-        // if (!!channel) {
-        //     this.setEventCallback(channel);
-        //     window['changeLocation'](location, channel);
-        // } else {
-        //     window['changeLocation'](location);
-        // }
+        if (!!channel) {
+            this.setEventCallback(channel);
+            window['changeLocation'](location, channel);
+        } else {
+            window['changeLocation'](location);
+        }
 
-        // if (window['clientPing']) {
-        //     window['clientPing']();
-        // }
+        if (window['clientPing']) {
+            window['clientPing']();
+        }
     }
 
     setEventCallback(channel: string): void {

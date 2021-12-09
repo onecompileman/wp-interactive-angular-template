@@ -14,13 +14,12 @@ const routes: Routes = [
 	{
 		path: '',
 		component: LobbyComponent,
-		// canActivate: [AuthGuard],
-		resolve: [BoothsResolver],
+		canActivate: [AuthGuard],
 		children: [
 			{
 				path: 'home',
 				component: LandingLobbyComponent,
-				// canDeactivate: [ LobbyDeactivateGuard ]
+				canDeactivate: [ LobbyDeactivateGuard ]
 			},
 			{
 				path: 'booth/:id',
@@ -32,7 +31,7 @@ const routes: Routes = [
 			{
 				path: 'livestream',
 				component: LivestreamComponent,
-				// canActivate: [LivestreamGuard]
+				canActivate: [LivestreamGuard]
 			}
 		]
 	}
