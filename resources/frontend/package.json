@@ -40,6 +40,7 @@
         "ngx-restangular": "^5.0.0",
         "ngx-slickjs": "^1.5.0",
         "ngx-toastr": "^13.0.0",
+        "p5": "^1.4.0",
         "pusher-js": "~5.1.1",
         "rxjs": "~6.5.4",
         "talkjs": "^0.14.2",

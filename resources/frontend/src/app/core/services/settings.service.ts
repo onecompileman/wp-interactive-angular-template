@@ -26,20 +26,40 @@ export class SettingsService {
                 if (!!options && options.skipUpdatingStore) {
                     return;
                 }
-
                 // LOBBY STATE
                 this.uiService.setLobbyAvailability(
                     settings.config.lobby.state
                 );
+
+                this.uiService.setProgramState({
+                    ...settings.program,
+                    start_at: (settings.program.start_at || '').replace(
+                        /-/g,
+                        '/'
+                    ),
+                });
 
                 // LOBBY BGM STATE
                 this.uiService.setLobbyBgmState(
                     settings.config.bgm ? settings.config.bgm.state : true
                 );
 
-                // LIVESTREAM
                 const isLivestreamOpen = settings.config.auditorium.state;
-                this.uiService.setLivestreamAvailability(isLivestreamOpen);
+                const isLivestreamEnded = settings.config['auditorium-end'].state;
+
+                // LIVESTREAM
+                this.uiService.setLivestreamState(isLivestreamOpen);
+
+                // LIVESTREAM END
+                this.uiService.setLivestreamEndState(isLivestreamEnded);
+
+                // LIVESTREAM REMINDER
+                const livstreamReminder = settings.config['auditorium-10min'].state;
+                this.uiService.setLivestreamReminderState(livstreamReminder);
+
+                // EMOJI
+                const isEmojiEnabled = settings.config['emoji'].state;
+                this.uiService.setEmojiState(isEmojiEnabled);
 
                 // MESSAGES
                 if (
@@ -69,12 +89,14 @@ export class SettingsService {
             .pipe(map((settings) => settings.program.start_at));
     }
 
-
     updateProgramDate(): void {
-        this.userDataService.appState().pipe(
-            take(1),
-            map((res) => res.data.event))
-            .subscribe(settings => {
+        this.userDataService
+            .appState()
+            .pipe(
+                take(1),
+                map((res) => res.data.event)
+            )
+            .subscribe((settings) => {
                 this.uiService.setProgramState({
                     ...settings.program,
                     start_at: (settings.program.start_at || '').replace(
@@ -83,5 +105,9 @@ export class SettingsService {
                     ),
                 });
             });
+    }
+
+    getSettingsSnapshot(): any {
+        return this.settings.getValue();
     }
 }

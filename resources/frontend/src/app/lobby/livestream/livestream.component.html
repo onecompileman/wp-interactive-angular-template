@@ -1,1 +1,192 @@
-<p>livestream works!</p>
+<div
+    class="row no-gutters d-sm-flex flex-sm-row _align-items-stretch h-100 cmp-livestream"
+>
+    <div
+        class="app-livestream__bg {{
+            !isReplay ? 'col-sm-8 col-md-8' : 'col-sm-12'
+        }}"
+    >
+        <div class="position-relative h-100">
+            <div
+                class="d-flex flex-column w-100 h-100 app-livestream__iframe-container"
+            >
+                <div class="app-livestream__back-container">
+                    <img
+                        (click)="backToLobby()"
+                        src="assets/images/back-to-lobby.png"
+                        class="app-livestream__btn"
+                        xAnalytics="Back to Lobby"
+                    />
+
+                    <img
+                        (click)="openProgram()"
+                        src="assets/images/program-sched.png"
+                        class="app-livestream__btn app-livestream__btn--program"
+                        xAnalytics="Program"
+                    />
+                </div>
+
+                <!-- iframe -->
+                <div class="flex-fill h-100 position-relative">
+                    <div class="d-flex w-100 h-100">
+                        <div class="flex-fill">
+                            <div class="position-relative w-100 h-100">
+                                <div
+                                    class="cmp-video absolute-middle w-100 h-100"
+                                >
+                                    <div class="app-livestream__loading-text">
+                                        <img
+                                            src="assets/images/loading-white.gif"
+                                            class="app-livestream__loading-img"
+                                        />
+                                        <span>
+                                            Please wait while the video is
+                                            loading...
+                                        </span>
+                                    </div>
+
+                                    <iframe
+                                        *ngIf="program"
+                                        allow="autoplay"
+                                        class="border-0 d-block w-100 h-100"
+                                        [src]="
+                                            (!isReplay
+                                                ? program?.video_url
+                                                : program?.video_replay_url
+                                            ) | safeUrl
+                                        "
+                                        allowfullscreen
+                                    ></iframe>
+                                    <div id="emojiCanvasContainer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer-->
+                <div class="app-livestream__footer">
+                    <img
+                        src="assets/images/livestream-logo.png"
+                        class="app-livestream__logo"
+                    />
+
+                    <div class="app-livestream__helper">
+                        <img
+                            src="assets/images/help.png"
+                            (click)="openLivestreamFAQsModal()"
+                        />
+                    </div>
+
+                    <div class="app-emoji__wrapper">
+                        <div class="content">
+
+                            <!-- LIKE -->
+                            <button
+                                (click)="emote(emojis.like)"
+                                class="app-emoji__emoji app-emoji__emoji--like"
+                            >
+                                <img
+                                    src="assets/images/emojis/like.png"
+                                    alt="like"
+                                    class="animate__animated animate__slower"
+                                    [class.animate__fadeOutUpBig]="
+                                        emojis.like.animate
+                                    "
+                                />
+                            </button>
+
+                            <!-- CLAP -->
+                            <button
+                                (click)="emote(emojis.clap)"
+                                class="app-emoji__emoji app-emoji__emoji--clap"
+                            >
+                                <img
+                                    src="assets/images/emojis/clap.png"
+                                    alt="clap"
+                                    class="animate__animated animate__slower"
+                                    [class.animate__fadeOutUpBig]="
+                                        emojis.clap.animate
+                                    "
+                                />
+                            </button>
+
+                            <!-- WOW -->
+                            <button
+                                (click)="emote(emojis.wow)"
+                                class="app-emoji__emoji app-emoji__emoji--wow"
+                            >
+                                <img
+                                    src="assets/images/emojis/wow.png"
+                                    alt="wow"
+                                    class="animate__animated animate__slower"
+                                    [class.animate__fadeOutUpBig]="
+                                        emojis.wow.animate
+                                    "
+                                />
+                            </button>
+
+                            <!-- HEART -->
+                            <button
+                                (click)="emote(emojis.heart)"
+                                class="app-emoji__emoji app-emoji__emoji--heart"
+                            >
+                                <img
+                                    src="assets/images/emojis/heart.png"
+                                    alt="heart"
+                                    class="animate__animated animate__slower"
+                                    [class.animate__fadeOutUpBig]="
+                                        emojis.heart.animate
+                                    "
+                                />
+                            </button>
+
+                            <!-- LAUGH -->
+                            <button
+                                (click)="emote(emojis.laugh)"
+                                class="app-emoji__emoji app-emoji__emoji--laugh"
+                            >
+                                <img
+                                    src="assets/images/emojis/laugh.png"
+                                    alt="laugh"
+                                    class="animate__animated animate__slower"
+                                    [class.animate__fadeOutUpBig]="
+                                        emojis.laugh.animate
+                                    "
+                                />
+                            </button>
+
+                            <!-- CHEERS -->
+                            <button
+                                (click)="emote(emojis.cheers)"
+                                class="app-emoji__emoji app-emoji__emoji--cheers"
+                            >
+                                <img
+                                    src="assets/images/emojis/cheers.png"
+                                    alt="cheers"
+                                    class="animate__animated animate__slower"
+                                    [class.animate__fadeOutUpBig]="
+                                        emojis.cheers.animate
+                                    "
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="col-sm-4 col-md-4 app-livestream__chat-wrapper"
+        *ngIf="!isReplay"
+    >
+        <iframe
+            [src]="cboxUrl | safeUrl"
+            class="h-100 w-100"
+            height="100"
+            height="100%"
+            frameborder="0"
+        ></iframe>
+    </div>
+</div>

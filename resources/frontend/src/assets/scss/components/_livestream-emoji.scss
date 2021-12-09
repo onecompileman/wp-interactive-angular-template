@@ -1,0 +1,103 @@
+/**
+ * Stream emoji
+ */
+ .#{$style-prefix}-emoji {
+    &__emoji {
+        display: inline-block;
+        vertical-align: middle;
+        width: 1.1em;
+        height: 1.1em;
+        border: 0;
+        line-height: normal;
+        margin: 0;
+        transition: transform 0.2s ease;
+        position: relative;
+        z-index: 1;
+        position: relative;
+        padding: 0;
+        top: 50%;
+
+
+        &:focus {
+            outline: none;
+        }
+
+        @include mobileLandscape() {
+            width: 1.4em !important;
+            height: 1.4em !important;
+            margin-right: .5em !important;
+        }
+
+        @include respond-above(md) {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        img {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &:not(:last-of-type) {
+            margin-right: 0.5em;
+        }
+
+        &:hover {
+            transform: translateY(-20%) scale(1.2);
+        }
+
+        &--like {
+            background: url('/assets/images/emojis/like.png') no-repeat 50% /
+                contain;
+        }
+
+        &--clap {
+            background: url('/assets/images/emojis/clap.png') no-repeat 50% /
+                contain;
+        }
+
+        &--wow {
+            background: url('/assets/images/emojis/wow.png') no-repeat 50% /
+                contain;
+        }
+
+        &--heart {
+            background: url('/assets/images/emojis/heart.png') no-repeat 50% /
+                contain;
+        }
+
+        &--laugh {
+            background: url('/assets/images/emojis/laugh.png') no-repeat 50% /
+                contain;
+        }
+
+        &--cheers {
+            background: url('/assets/images/emojis/cheers.png') no-repeat 50% /
+                contain;
+        }
+    }
+
+    &__wrapper {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1.5px solid #1714C8;
+        border-radius: 82px;
+        padding: 0.3em 1em;
+        white-space: nowrap;
+
+        @include respond-above($initialBreakpoint) {
+            padding: 0.5em 1em;
+        }
+
+        @include respond-above(lg) {
+            padding: 0.7em 1.2em;
+        }
+    }
+}

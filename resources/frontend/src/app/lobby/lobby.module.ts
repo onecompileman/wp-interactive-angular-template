@@ -6,16 +6,19 @@ import { BoothComponent } from './booth/booth.component';
 import { LobbyComponent } from './lobby.component';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { LandingLobbyComponent } from './landing-lobby/landing-lobby.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     BoothComponent, 
     LobbyComponent, 
-    LivestreamComponent, LandingLobbyComponent
+    LivestreamComponent,
+    LandingLobbyComponent
   ],
   imports: [
     CommonModule,
-    LobbyRoutingModule
+    LobbyRoutingModule,
+    SharedModule
   ]
 })
 export class LobbyModule { }

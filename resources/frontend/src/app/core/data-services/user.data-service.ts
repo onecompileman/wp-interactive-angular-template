@@ -8,6 +8,12 @@ import { Observable } from 'rxjs';
 export class UserDataService {
     constructor(private restangular: Restangular) {}
 
+    addEmoji(emoji) {
+        return this.restangular
+            .all('/api/v2/guest/emoji/broadcast')
+            .post({ emoji });
+    }
+
     register(userInfo: any): Observable<any> {
         return this.restangular
             .all('api')

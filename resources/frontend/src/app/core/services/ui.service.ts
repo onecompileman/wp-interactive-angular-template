@@ -2,18 +2,43 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UiService {
-  liveUpdateSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  liveUpdateMessageSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  livestreamAvailabilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  lobbyAvailabilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  lobbyBgmSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  emojiSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  liveUpdateSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+      false
+  );
+  liveUpdateMessageSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
+      ''
+  );
+  lobbyAvailabilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+      false
+  );
+  lobbyBgmSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+      false
+  );
+  emojiSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+      false
+  );
   programSubject: BehaviorSubject<any> = new BehaviorSubject(null);
+  livestreamStateSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  livestreamEndStateSubj: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  livestreamReminderStateSubj: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isActualEventDay: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor() { }
+  constructor() {}
+
+  setLivestreamState(state: boolean): void {
+    this.livestreamStateSubject.next(state);
+  }
+
+  getLivestreamState$(): Observable<boolean> {
+    return this.livestreamStateSubject.asObservable();
+  }
+
+  getLivestreamState(): boolean {
+    return this.livestreamStateSubject.getValue();
+  }
 
   setLiveUpdateState(showLiveUpdate: boolean): void {
     this.liveUpdateSubject.next(showLiveUpdate);
@@ -29,18 +54,6 @@ export class UiService {
 
   getLiveUpdateMessageState$(): Observable<string> {
     return this.liveUpdateMessageSubject.asObservable();
-  }
-
-  setLivestreamAvailability(state: boolean): void {
-    this.livestreamAvailabilitySubject.next(state);
-  }
-
-  getLivestreamAvailability$(): Observable<boolean> {
-    return this.livestreamAvailabilitySubject.asObservable();
-  }
-
-  getLivestreamAvailability(): boolean {
-    return this.livestreamAvailabilitySubject.getValue();
   }
 
   setLobbyAvailability(state: boolean): void {
@@ -93,4 +106,42 @@ export class UiService {
     return this.programSubject.asObservable();
   }
 
+  // LIVESTREAM END STATE
+  setLivestreamEndState(state: boolean): void {
+    this.livestreamEndStateSubj.next(state);
+  }
+
+  getLivestreamEndState$(): Observable<boolean> {
+    return this.livestreamEndStateSubj.asObservable();
+  }
+
+  getLivestreamEndState(): boolean {
+    return this.livestreamEndStateSubj.getValue();
+  }
+
+  // LIVESTREAM REMINDER STATE
+  setLivestreamReminderState(state: boolean): void {
+    this.livestreamReminderStateSubj.next(state);
+  }
+
+  getLivestreamReminderState$(): Observable<boolean> {
+    return this.livestreamReminderStateSubj.asObservable();
+  }
+
+  getLivestreamReminderState(): boolean {
+    return this.livestreamReminderStateSubj.getValue();
+  }
+
+  // EVENT SCHED
+  setisActualEventDayState(state: boolean): void {
+    this.isActualEventDay.next(state);
+  }
+
+  getisActualEventDayState$(): Observable<boolean> {
+    return this.isActualEventDay.asObservable();
+  }
+
+  getisActualEventDayState(): boolean {
+    return this.isActualEventDay.getValue();
+  }
 }

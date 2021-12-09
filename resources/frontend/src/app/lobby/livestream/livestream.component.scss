@@ -1,0 +1,142 @@
+@import '~src/assets/scss/config';
+@import '~src/assets/scss/theme-config';
+
+$breakpointInitial: 575px;
+
+.#{ $style-prefix }-livestream {
+
+    &__back-container {
+        height: 40px;
+        position: relative;
+        background: url('/assets/images/livestream-header.png') no-repeat center
+            bottom;
+        background-size: cover;
+        position: relative;
+
+        @include respond-above(lg) {
+            height: 47px;
+            padding: 0;
+        }
+    }
+
+    &__btn {
+        cursor: pointer;
+        height: 80%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+
+        @include respond-above(xxs) {
+          height: 100%;
+        }
+
+        &--program {
+            left: unset;
+            right: 0;
+        }
+    }
+
+    &__bg {
+        position: relative;
+        min-height: 250px;
+    }
+
+    &__chat-wrapper {
+        background-color: #fff;
+        transition: all 400ms ease;
+    }
+
+    &__footer {
+        background: url('/assets/images/livestream-footer.png') no-repeat;
+        background-size: cover;
+        position: relative;
+        height: 6em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 25px;
+
+        @include respond-above(sm) {
+            height: 7em;
+        }
+
+        @include respond-above(lg) {
+            height: 165px;
+        }
+    }
+
+    &__helper {
+        position: absolute;
+        bottom: 0.8em;
+        right: 10px;
+        display: flex;
+        font-size: .6em;
+        cursor: pointer;
+
+        @include respond-above(sm) {
+          font-size: .7em;
+        }
+
+        img {
+          cursor: pointer;
+          width: 3em;
+
+            @include respond-above($initialBreakpoint) {
+                width: 4em;
+            }
+        }
+    }
+
+    &__loading-text {
+      @include modalLoadingText;
+    }
+
+    &__loading-img {
+        @include modalLoadingImage;
+    }
+
+    &__logo {
+        position: absolute;
+        height: 48%;
+        left: 4%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+}
+
+// Livestream structure styles
+@media (max-width: 640px) and (orientation: landscape) {
+    .cmp-livestream > div:first-child {
+        width: 58%;
+    }
+    .cmp-livestream > div:last-child {
+        width: 42%;
+    }
+}
+
+.cmp-livestream {
+    min-height: 100vh;
+    min-height: var(--app-height);
+}
+
+.cmp-video {
+  background: #1A1A1A;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#emojiCanvasContainer {
+    width: 30%;
+    height: 75%;
+    position: absolute;
+    z-index: 5;
+    left: 70%;
+    display: block;
+}

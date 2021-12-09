@@ -32,7 +32,7 @@ const routes: Routes = [
 			{
 				path: 'livestream',
 				component: LivestreamComponent,
-                canActivate: [LivestreamGuard]
+				// canActivate: [LivestreamGuard]
 			}
 		]
 	}
