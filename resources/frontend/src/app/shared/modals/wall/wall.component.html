@@ -1,0 +1,37 @@
+<div class="modal-body">
+    <img
+        src="assets/images/close.png"
+        class="app-modal__close app-wall__close"
+        (click)="close()"
+    />
+
+    <ng-container *ngIf="isMobile && isPortrait && (
+        wallData.wallType === walls?.MOSAIC_WALL
+    )">
+        <div class="app-wall__flip">
+            <img class="app-wall__flip-icon" src="assets/images/flip-landscape.png">
+            <span class="app-wall__flip-text" >Flip to landscape</span>
+        </div>
+    </ng-container>
+
+    <div class="app-modal__container app-wall__container">
+        <div class="app-wall__content-wrapper">
+            <div class="app-wall__loading-text">
+                <img
+                    src="assets/images/loading-violet.gif"
+                    class="app-wall__loading-img"
+                />
+                <span>Please wait while the {{ wallData.modalTitle }} is loading...</span>
+            </div>
+
+            <iframe
+                [src]="wallData.link | safeUrl"
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+                #iFrame
+            ></iframe>
+        </div>
+    </div>
+</div>
+
