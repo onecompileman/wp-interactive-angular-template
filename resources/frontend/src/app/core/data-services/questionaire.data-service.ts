@@ -11,7 +11,7 @@ export class QuestionaireDataService {
     getAll(): Observable<any[]> {
         return this.restangular
             .all('api')
-            .all('v1')
+            .all('v2')
             .one('questionnaires')
             .get();
     }
