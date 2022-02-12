@@ -1,0 +1,79 @@
+<div class="app-photobooth__flip" *ngIf="isMobile && !isPortrait">
+    <img class="app-photobooth__flip-icon" src="assets/images/flip.png" />
+    <span class="app-photobooth__flip-text">Flip to portrait</span>
+</div>
+<div class="app-photobooth__qr" *ngIf="false">
+    <h3>
+        To take a photo with your smartphone,
+        point your phone camera on this QR code
+    </h3>
+    <img src="assets/images/photobooth-qr.png" />
+</div>
+<div class="app-photobooth" #parentContainer>
+    <div>
+        <div
+            class="m-auto mw-100 app-photobooth__base"
+            style="height: 100%"
+            #base
+        >
+            <div
+                class="
+                    modal-body
+                    text-center
+                    w-100
+                    h-100
+                    modal-body-flex
+                    p-0
+                    rounded-0
+                    overflow-hidden
+                    app-photobooth__modal-body
+                "
+            >
+                <img
+                    src="assets/images/close.png"
+                    class="app-modal__close app-photobooth__close"
+                    xAnalytics="close Photobooth"
+                    (click)="close()"
+                />
+                <div class="iframe-box w-100 h-100">
+                    <div
+                        class="
+                            iframe-content
+                            w-100
+                            h-100
+                            position-relative
+                            app-photobooth__iframe-content
+                        "
+                    >
+                        <div class="app-photobooth__loading-text" *ngIf="link">
+                            <img
+                                src="assets/images/loading-red.gif"
+                                class="app-photobooth__loading-img"
+                            />
+                            <span
+                                >Please wait while the
+                                {{
+                                    isBoomerang ? 'Qmerang' : 'photobooth'
+                                }}
+                                is loading...</span
+                            >
+                        </div>
+
+                        <iframe
+                            *ngIf="link; else noLinkTemp"
+                            [src]="link | safeUrl"
+                            data-ot-ignore
+                            frameborder="0"
+                            allow="camera;encrypted-media*"
+                        ></iframe>
+                        <ng-template #noLinkTemp>
+                            <div class="app-photobooth__no-link">
+                                No photobooth link in CMS
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

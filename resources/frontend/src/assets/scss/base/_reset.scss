@@ -4,7 +4,6 @@
 
 html {
 	box-sizing: border-box;
-	// overflow: hidden;
 }
 
 *,
@@ -16,9 +15,51 @@ html {
 }
 
 body {
-	font-family: 'Work Sans Light', sans-serif;
+	font-size: var(--base-font-size);
+	@include font();
 }
 
 button:focus {
 	outline: none;
 }
+
+input {
+	outline: none;
+	border: none;
+}
+
+b,
+strong {
+	@include font(bold);
+}
+
+.modal {
+	z-index: 99999999 !important;
+	height: var(--app-height) !important;
+}
+
+.modal-backdrop {
+	z-index: 9999 !important;
+}
+
+.modal-backdrop.show {
+	opacity: .8 !important;
+}
+
+.modal-dialog {
+	margin: 1em 0.5em;
+
+	@include respond-above(sm) {
+			margin: 0 auto;
+			height: 100%;
+	}
+}
+
+.two-modals .modal:first-of-type {
+	opacity: 0;
+}
+
+#p5_loading {
+display: none !important;
+}
+

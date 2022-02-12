@@ -1,0 +1,366 @@
+/**
+ * Modal Component
+ */
+.#{$style-prefix}-modal {
+    margin: 0 auto;
+    min-height: var(--app-height);
+    padding: 0 0.7em;
+
+    @include respond-above(sm) {
+        max-width: 35em;
+    }
+
+    .modal-body {
+        padding: 0.8em 0.5em;
+        position: relative;
+        z-index: 9999;
+        color: $white;
+        border: none;
+        border-radius: 0.25em;
+        background: $white;
+
+        @include respond-above(sm) {
+            padding: 1em;
+        }
+    }
+
+    .modal-content {
+        border-radius: 1em;
+        color: $dark;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+
+    .modal-header {
+        background-color: $dark;
+        border-radius: 0.5em 0.5em 0 0;
+        border-bottom: none;
+        padding: 0.8em 0.5em 0.8em 1em;
+
+        @include respond-above(sm) {
+            padding: 1em 1em 1em 1.5em;
+        }
+    }
+
+    .modal-header &__heading {
+        max-width: 90%;
+
+        @include respond-above(sm) {
+            max-width: 95%;
+        }
+    }
+
+    &__base {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: auto;
+        max-width: 100%;
+    }
+
+    &__close {
+        position: absolute;
+        height: 0.6em;
+        right: 0.2em;
+        top: 0.2em;
+        z-index: 2;
+        cursor: pointer;
+
+        @include respond-above(sm) {
+            right: 0.1em;
+            top: 0.1em;
+        }
+    }
+
+    &__col {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        margin-bottom: 0.8em;
+
+        @include respond-above(sm) {
+            margin-bottom: 1em;
+        }
+    }
+
+    &__form-group:not(:last-of-type) {
+        margin-bottom: 0.8em;
+    }
+
+    &__header {
+        border-bottom: none;
+        padding: 0.8em 0 0.5em;
+        margin-bottom: 0.25em;
+    }
+
+    &__heading {
+        font-size: 0.8em;
+        line-height: 1.1em;
+        margin-bottom: 0.2em;
+        color: $primary;
+        @include font(bold);
+
+        @include respond-above(sm) {
+            font-size: 0.6em;
+        }
+
+        &--sm {
+            font-size: 1em;
+        }
+
+        &--md {
+            font-size: 1.3em;
+        }
+
+        &--dark {
+            color: $dark;
+        }
+
+        &--primary {
+            color: $primary;
+        }
+
+        &--font-light {
+            font-size: 0.5em;
+            @include font();
+        }
+    }
+
+    &__label {
+        font-size: 1em;
+        margin-bottom: 0.5em;
+
+        &--sm {
+            font-size: 0.8em;
+
+            @include respond-above(sm) {
+                font-size: 0.9em;
+            }
+        }
+
+        &--primary {
+            color: $primary;
+        }
+    }
+
+    &__modal-body {
+        padding: 4% !important;
+        height: 100%;
+
+        @include respond-above(sm) {
+            padding: 2.5% 2.5% 3% !important;
+        }
+
+        &--wide-pad {
+            padding: 9% 2.5% 11% !important;
+
+            @include respond-above(sm) {
+                padding: 7% 2.5% 9% !important;
+            }
+        }
+
+        &--md-pad {
+            padding: 5% 5% 6% !important;
+        }
+
+        &--lg-pad {
+            padding: 10% 5% 13% !important;
+
+            @include respond-above(sm) {
+                padding: 10% 5% 11% !important;
+            }
+        }
+    }
+
+    &__no-header {
+        padding-top: 2em !important;
+        padding-bottom: 2em !important;
+    }
+
+    &__overflow {
+        max-height: calc(var(--app-height) - 5em);
+        overflow: auto;
+        padding-right: 0.5em;
+        text-align: justify;
+        margin-right: -0.2em;
+        @include font();
+        @include customScroll();
+
+        @include respond-above(sm) {
+            max-height: 8em;
+            padding-right: 0.25em;
+        }
+    }
+
+    &__parent {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__row {
+        margin-left: -0.5em;
+        margin-right: -0.5em;
+    }
+
+    &__section {
+        padding: 0.5em 0 1em;
+
+        @include respond-above(sm) {
+            padding: 1em 0 2em;
+        }
+    }
+
+    &__subheading {
+        font-size: 0.5em;
+        margin-bottom: 0;
+        color: $white;
+        max-width: 95%;
+        margin-top: 0.25em;
+
+        @include respond-above(sm) {
+            font-size: 0.7em;
+        }
+    }
+
+    &__text {
+        color: $dark;
+        font-size: 0.6em;
+        margin-bottom: 0;
+
+        @include respond-above(sm) {
+            font-size: 0.3em;
+        }
+
+        &--sm {
+            font-size: 0.45em;
+            line-height: 1.5em;
+
+            @include respond-above(sm) {
+                font-size: 0.23em;
+                line-height: 1.8em;
+            }
+        }
+
+        &--md {
+            font-size: 0.45em;
+            line-height: 1.8em;
+
+            @include respond-above(sm) {
+                font-size: 0.35em;
+            }
+        }
+
+        &--lg {
+            font-size: 0.44em;
+
+            @include respond-above(sm) {
+                font-size: 0.45em;
+            }
+        }
+
+        &--xl {
+            font-size: 0.7em;
+
+            @include respond-above(sm) {
+                font-size: 0.6em;
+            }
+        }
+    }
+
+    &--sm {
+        @include respond-above(sm) {
+            max-width: 30em;
+        }
+    }
+
+    &--sm &__close {
+        height: 0.8em;
+
+        @media (max-width: 600px) {
+            height: 1em;
+        }
+    }
+
+    &--md {
+        @include respond-above(sm) {
+            max-width: 40em;
+        }
+    }
+
+    &--lg {
+        @include respond-above(sm) {
+            max-width: 55em;
+            padding: 0 3em;
+        }
+    }
+
+    &--lg &__close {
+        height: 0.5em;
+
+        @media (max-width: 600px) {
+            height: 1em;
+        }
+    }
+
+    &--xl {
+        @include respond-above(sm) {
+            max-width: 65em;
+        }
+    }
+
+    &--no-radius {
+        .modal-content {
+            border-radius: 0;
+        }
+    }
+
+    &--mobileZoom {
+        @include mobileLandscape() {
+            font-size: 1.2em;
+        }
+    }
+
+    &--auto-resize {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+
+        .modal-content {
+            height: 100%;
+            background: transparent;
+            border: none;
+        }
+    }
+
+    &--portrait {
+        max-width: 405px;
+
+        .modal-content {
+            height: 100%;
+            background: transparent;
+            border: none;
+        }
+    }
+
+    &--wall {
+        .modal-content {
+            border: none;
+            border-radius: 0;
+        }
+
+        .modal-body {
+            background: none;
+            padding: 0;
+        }
+    }
+
+    &--no-close &__modal-body {
+        width: 100%;
+    }
+}
