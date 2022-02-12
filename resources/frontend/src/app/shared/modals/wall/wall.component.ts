@@ -14,7 +14,7 @@ import { WallType } from '../../enums/wall-type.enum';
 import { Wall } from '../../models/wall.model';
 
 @Component({
-    selector: 'globe-wall',
+    selector: 'app-wall',
     templateUrl: './wall.component.html',
     styleUrls: ['./wall.component.scss'],
 })

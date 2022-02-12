@@ -12,7 +12,7 @@ import { SoundManagerService } from 'src/app/core/services/sound-manager.service
 import { TidioService } from 'src/app/core/services/tidio.service';
 
 @Component({
-    selector: 'alaska-photobooth',
+    selector: 'app-photobooth',
     templateUrl: './photobooth.component.html',
     styleUrls: ['./photobooth.component.scss'],
 })

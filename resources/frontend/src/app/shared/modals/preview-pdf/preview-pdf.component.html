@@ -1,0 +1,57 @@
+<div class="app-modal__parent" #parentContainer>
+    <div>
+        <div class="app-modal__base" #base>
+            <div class="modal-body app-modal__modal-body">
+                <img
+                    src="assets/images/close.png"
+                    class="app-modal__close"
+                    (click)="close()"
+                />
+                <h1 class="app-modal__heading text-center">
+                    {{ data.title }}
+                </h1>
+                <div class="app-preview-pdf__container">
+                    <div class="app-preview-pdf__embed">
+                        <div
+                            class="app-preview-pdf__loading-wrapper"
+                            *ngIf="isPdfLoading"
+                        >
+                            <div class="app-preview-pdf__loading-text">
+                                <img
+                                    src="assets/images/loading-violet.gif"
+                                    class="app-preview-pdf__loading-img mb-2"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="app-preview-pdf__zoom-wrapper">
+                                <span
+                                    class="fa fa-search-plus app-preview-pdf__zoom"
+                                    xAnalytics="zoom in"
+                                    (click)="zoomIn()"
+                                ></span>
+                                <span
+                                    class="fa fa-search-minus app-preview-pdf__zoom"
+                                    xAnalytics="zoom out"
+                                    (click)="zoomOut()"
+                                ></span>
+                            </div>
+
+                            <div class="app-preview-pdf__pdf-wrapper" id="pdfWrapper">
+                                <pdf-viewer
+                                    [src]="data.file_url"
+                                    [render-text]="false"
+                                    [original-size]="true"
+                                    [fit-to-page]="true"
+                                    (after-load-complete)="pdfLoaded()"
+                                    [zoom]="zoom_to"
+                                    style="display: block"
+                                ></pdf-viewer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

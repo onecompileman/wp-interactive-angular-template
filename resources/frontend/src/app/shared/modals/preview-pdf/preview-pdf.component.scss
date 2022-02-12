@@ -1,0 +1,61 @@
+@import '~src/assets/scss/config';
+@import '~src/assets/scss/theme-config';
+
+.#{$style-prefix}-preview-pdf {
+
+  &__embed {
+    min-height: 5em;
+    margin-top: .5em;
+    
+    @include respond-above(sm) {
+      margin-top: -0.6em;
+    }
+  }
+
+  &__loading-text {
+    @include modalLoadingText;
+    color: $primary;
+  }
+
+  &__loading-img {
+    @include modalLoadingImage;
+  }
+
+  &__loading-wrapper {
+    height: 500px;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__pdf-wrapper {
+    overflow: auto;
+    padding-bottom: 0;
+    max-height: 60vh;
+    min-height: 60vh;
+    max-width: 100%;
+    width: 100%;
+    @include customScroll;
+  }
+
+  &__zoom-wrapper {
+    padding: 0 0.5em 0;
+    text-align: center;
+    position: relative;
+  }
+
+  &__zoom {
+    font-size: 0.7em;
+    padding: 0;
+    cursor: pointer;
+
+    @include respond-above($initialBreakpoint) {
+      font-size: 0.4em;
+    }
+
+    &:first-of-type {
+      margin-right: .5em;
+    }
+  }
+}

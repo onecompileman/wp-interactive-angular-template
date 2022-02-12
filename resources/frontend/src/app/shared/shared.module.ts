@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -17,7 +18,7 @@ import * as fromPipes from './pipes';
 		...fromModals.modals,
 		...fromComponents.components,
 		...fromPipes.pipes,
-        ...fromDirectives.directives
+		...fromDirectives.directives
 	],
 	imports: [
 		AccordionModule.forRoot(),
@@ -26,16 +27,17 @@ import * as fromPipes from './pipes';
 		TooltipModule.forRoot(),
 		FormsModule,
 		CommonModule,
-		ModalModule.forRoot()
+		ModalModule.forRoot(),
+		PdfViewerModule
 	],
 	exports: [
 		...fromComponents.components,
 		...fromPipes.pipes,
-        ...fromDirectives.directives,
+		...fromDirectives.directives,
 		AccordionModule, 
 		TooltipModule, 
 		ReactiveFormsModule, 
-		FormsModule 
+		FormsModule
 	],
 	providers: [ TooltipConfig ]
 })

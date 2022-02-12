@@ -140,6 +140,12 @@ export class ModalService {
         this.closeAllOpenModals();
     }
 
+    killDoubleModal(): void {
+        setTimeout(() => {
+            document.querySelector('body').classList.remove('two-modals');
+        }, 500);
+    }
+
     openHallStatusModal(): void {
         if (this.namedModalRefs['livestream']) {
             return;

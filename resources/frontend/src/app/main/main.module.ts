@@ -7,7 +7,11 @@ import { LandingComponent } from './landing/landing.component';
 import { ModalsComponent } from './modals/modals.component';
 
 @NgModule({
-  declarations: [MainComponent, LandingComponent, ModalsComponent],
+  declarations: [
+    MainComponent, 
+    LandingComponent, 
+    ModalsComponent
+  ],
   imports: [
     CommonModule,
     MainRoutingModule
