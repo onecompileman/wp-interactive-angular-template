@@ -1,0 +1,159 @@
+/**
+* Cards Component
+*/
+.#{$style-prefix}-card {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 1em;
+	cursor: pointer;
+	position: relative;
+	min-height: calc(100% - 1em);
+
+	&__card {
+		border-radius: 10px;
+		margin-bottom: 0.5em;
+	}
+
+	&__card-header {
+		background: #EEEEEE;
+		background-size: cover;
+		background-position: center;
+		padding-top: 70%;
+		position: relative;
+		border-radius: 10px 10px 0 0;
+		border: 1px solid #C4C4C4;
+		border-bottom: none;
+		cursor: pointer;
+
+		&::before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		&--sm {
+			padding-top: 60%;
+		}
+	}
+
+	&__card-body {
+		padding: 0.6em;
+		background: $white;
+		border-radius: 0px 0px 10px 10px;
+		border: 1px solid #C4C4C4;
+		position: relative;
+
+		@include respond-above($initialBreakpoint) {
+			padding: 0.2em;
+		}
+
+		&--with-icon {
+			padding-right: 2.5em;
+			position: relative;
+		}
+
+		&--multiline {
+			min-height: 3em;
+
+			@include respond-above($initialBreakpoint) {
+				min-height: 35px;
+			}
+
+			@include respond-above(lg) {
+				min-height: 65px;
+			}
+
+			h1 {
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: normal;
+			}
+		}
+	}
+
+	&__col {
+		padding-left: .25em;
+		padding-right: .25em;
+	}
+
+	&__download {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 1em;
+		width: 1em;
+		cursor: pointer;
+
+		@include respond-above($initialBreakpoint) {
+				right: 0.4em;
+				width: 0.4em;
+		}
+	}
+
+	&__heading {
+		font-size: 0.7em;
+		color: #242424;
+		margin: 0;
+		text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+		
+
+		@include respond-above($initialBreakpoint) {
+			font-size: 0.3em;
+		}
+
+		@include respond-above(lg) {
+			font-size: 0.25em;
+		}
+
+		&--mb-1 {
+			margin-bottom: 0.3em;
+		}
+
+		&.with-pr {
+			padding-right: 2em;
+		}
+	}
+
+	&__overflow {
+		min-height: 18em;
+		max-height: 40em;
+		overflow: auto;
+		margin-top: .8em;
+		margin-right: -0.5em;
+		padding-right: 1em;
+		font-size: .6em;
+		text-align: justify;
+		@include font(light);
+		@include customScroll();
+
+		@include respond-above(sm) {
+			font-size: .8em;
+			max-height: 28em;
+		}
+	}
+
+	&__play-icon {
+		position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11%;
+
+		&::before {
+			color: rgba(197, 53, 32, 0.48);
+		}
+	}
+
+	&__row {
+		margin: 0;
+	}
+}

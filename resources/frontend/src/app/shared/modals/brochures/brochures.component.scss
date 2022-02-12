@@ -1,0 +1,40 @@
+@import '~src/assets/scss/config';
+@import '~src/assets/scss/theme-config';
+
+.#{ $style-prefix }-brochures {
+
+    &__check {
+        position: absolute;
+        top: .5em;
+        right: .5em;
+        width: 1.3em;
+
+        @include respond-above($initialBreakpoint) {
+            width: 0.5em;
+            top: 8px;
+            right: 8px;
+        }
+    }
+
+    &__download {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 1em;
+        width: 1em;
+        cursor: pointer;
+
+        @include respond-above($initialBreakpoint) {
+            right: 0.4em;
+            width: 0.4em;
+        }
+    }
+
+    &__overflow {
+        margin-top: 10px; 
+        
+        @media (max-width: 600px) {
+            margin-top: .5em;
+        }
+    }
+}

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { SettingsService } from 'src/app/core/services/settings.service';
+import { ActionType } from 'src/app/shared/enums/action-type.enum';
 import { AssetType } from 'src/app/shared/enums/asset-type.enum';
 import { WallType } from 'src/app/shared/enums/wall-type.enum';
-import { PreviewVideoComponent, WallComponent } from 'src/app/shared/modals';
+import { BrochuresComponent, PreviewVideoComponent, WallComponent } from 'src/app/shared/modals';
 import { PhotoboothComponent } from 'src/app/shared/modals/photobooth/photobooth.component';
 import { PreviewPdfComponent } from 'src/app/shared/modals/preview-pdf/preview-pdf.component';
+import { Brochure } from 'src/app/shared/models/brochure.model';
 import { PdfPreview } from 'src/app/shared/models/pdf-preview.model';
 import { VideoPreview } from 'src/app/shared/models/video-preview.model';
 import { Wall } from 'src/app/shared/models/wall.model';
@@ -99,6 +101,26 @@ export class ModalsComponent implements OnInit {
           data: videoData,
           closeCallback: () => {}
         }
+      })
+    );
+  }
+
+  openBrochures(): void {
+    const brochureData: Brochure = {
+      title: 'Video Gallery',
+      brochures: [],
+      actionType: ActionType.PREVIEW_VIDEO,
+    };
+
+    this.modals.refs.push(
+      this.bsModalService.show(BrochuresComponent, {
+        class: 'modal-dialog-centered app-modal app-modal--lg app-modal--auto-resize',
+        keyboard: false,
+        ignoreBackdropClick: true,
+        initialState: {
+          data: brochureData,
+          closeCallback: () => {}
+        },
       })
     );
   }

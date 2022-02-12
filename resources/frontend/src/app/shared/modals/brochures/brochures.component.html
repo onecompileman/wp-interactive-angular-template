@@ -1,0 +1,47 @@
+<div class="app-modal__parent" #parentContainer>
+    <div>
+        <div class="app-modal__base" #base>
+            <div class="modal-body app-modal__modal-body">
+                <img
+                    src="assets/images/close.png"
+                    class="app-modal__close"
+                    (click)="close()"
+                    xAnalytics="close {{ data.title }}"
+                />
+                <h1 class="app-modal__heading text-center">
+                    {{ data.title }}
+                </h1>
+
+                <div class="app-modal__overflow app-brochures__overflow">
+                    <div class="row app-card__row">
+                        <div
+                            class="col-sm-6 col-md-4 app-card__col"
+                            *ngFor="let brochure of data.brochures; let ind = index"
+                        >
+                            <div
+                                class="app-card__card"
+                                (click)="previewVideo(brochure)"
+                                xAnalytics="{{ brochure?.name }}"
+                            >
+                                <div
+                                    class="app-card__card-header"
+                                    [ngStyle]="{'background-image': 'url(&quot;' + brochure?.thumbnail + '&quot;)'}"
+                                >
+                                    <span class="fa fa-play app-card__play-icon"></span>
+                                </div>
+                                <div class="app-card__card-body app-card__card-body--multiline">
+                                    <h1
+                                        class="app-card__heading app-card__heading--mb-1"
+                                        [ngClass]="{'with-pr' : data.actionType === actionType.PREVIEW_PDF}"
+                                    >
+                                        {{ brochure?.title || 'The quick brown fox jumped over the lazy dog.' }}
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
