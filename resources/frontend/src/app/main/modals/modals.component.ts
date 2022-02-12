@@ -4,10 +4,11 @@ import { ModalService } from 'src/app/core/services/modal.service';
 import { SettingsService } from 'src/app/core/services/settings.service';
 import { AssetType } from 'src/app/shared/enums/asset-type.enum';
 import { WallType } from 'src/app/shared/enums/wall-type.enum';
-import { WallComponent } from 'src/app/shared/modals';
+import { PreviewVideoComponent, WallComponent } from 'src/app/shared/modals';
 import { PhotoboothComponent } from 'src/app/shared/modals/photobooth/photobooth.component';
 import { PreviewPdfComponent } from 'src/app/shared/modals/preview-pdf/preview-pdf.component';
 import { PdfPreview } from 'src/app/shared/models/pdf-preview.model';
+import { VideoPreview } from 'src/app/shared/models/video-preview.model';
 import { Wall } from 'src/app/shared/models/wall.model';
 
 @Component({
@@ -76,6 +77,26 @@ export class ModalsComponent implements OnInit {
         keyboard: false,
         initialState: {
           data: pdfData,
+          closeCallback: () => {}
+        }
+      })
+    );
+  }
+
+  openPreviewVideo(): void {
+    const videoData: VideoPreview = {
+      title: 'Test Video',
+      video_url: 'https://player.vimeo.com/video/87110435',
+      isSingleModal: true,
+    };
+    
+    this.modals.refs.push(
+      this.bsModalService.show(PreviewVideoComponent, {
+        class: 'modal-dialog-centered app-modal app-modal--lg app-modal--auto-resize',
+        ignoreBackdropClick: true,
+        keyboard: false,
+        initialState: {
+          data: videoData,
           closeCallback: () => {}
         }
       })

@@ -1,0 +1,34 @@
+<div class="app-modal__parent" #parentContainer>
+    <div>
+        <div class="app-modal__base" #base>
+            <div class="modal-body app-modal__modal-body">
+                <img
+                    src="assets/images/close.png"
+                    class="app-modal__close"
+                    (click)="close()"
+                />
+                <h1 class="app-modal__heading text-center">
+                    {{ data.title }}
+                </h1>
+                <div class="app-preview-video__video-wrapper">
+                    <div class="app-preview-video__loading-text">
+                        <img
+                            src="assets/images/loading-violet.gif"
+                            class="app-preview-video__loading-img mb-2"
+                        />
+                        <span>Please wait while the video is loading...</span>
+                    </div>
+
+                    <iframe
+                        [src]="videoUrl | safeUrl"
+                        frameborder="0"
+                        allow="autoplay; fullscreen"
+                        allowfullscreen
+                        #previewIframe
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
