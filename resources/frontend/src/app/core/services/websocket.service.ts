@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isAfter } from 'date-fns';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 import { noop } from 'rxjs';
@@ -134,6 +135,60 @@ export class WebsocketService {
                         });
                 }
             };
+        }
+    }
+
+    initPublicWebsocket(): void {
+        if (!window['public-websocket']) {
+            window['Pusher'] = Pusher;
+            window['Echo'] = new Echo({
+                broadcaster: 'pusher',
+                key: environment.pusher.key,
+                cluster: environment.pusher.cluster,
+                wsHost: environment.pusher.host,
+                wsPort: environment.pusher.port,
+                wssPort: environment.pusher.port,
+                disableStats: true,
+                encrypted: false,
+                auth: {
+                    headers: {
+                        'X-CSRF-TOKEN': document
+                            .querySelector('meta[name="csrf"]')
+                            .getAttribute('content'),
+                    },
+                },
+            });
+
+            window['Echo']
+                .channel('V2F2ZXBsYXlQdWJsaWM=')
+                .listen('WaveplayEvent', (e) => {
+                    const target = e.payload.target;
+                    const snapshot = this.settingsService.getV1AppSettingsSnapshot();
+
+                    if (target === 'event.start_at') {
+                        const eventStartDate = new Date(
+                            e.payload.start_at.replace(/-/g, '/')
+                        );
+                        // TODO: set server date
+                        const isEventOpenByDate = isAfter(new Date(), eventStartDate);
+                        const isEventOpen = snapshot.config.loginState || isEventOpenByDate;
+
+                        this.uiService.setEventState(isEventOpen);
+                        this.uiService.setEventDateState(eventStartDate);
+
+                    } else if (target === 'login') {
+                        const eventStartDate = new Date(
+                            snapshot.start_at.replace(/-/g, '/')
+                        );
+                        // TODO: set server date
+                        const isEventOpenByDate = isAfter(new Date(), eventStartDate);
+                        const isEventOpen =
+                            e.payload.state || isEventOpenByDate;
+                        this.uiService.setEventState(isEventOpen);
+                    }
+                });
+
+            window['public-websocket'] = true;
         }
     }
 
