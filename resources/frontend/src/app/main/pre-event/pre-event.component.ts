@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { isAfter } from 'date-fns';
-import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
-import { interval, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { interval, Observable, Subject, Subscription } from 'rxjs';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { UserDataService } from 'src/app/core/data-services/user.data-service';
 import { TidioService } from 'src/app/core/services/tidio.service';
-import { environment } from 'src/environments/environment';
+import { UiService } from 'src/app/core/services/ui.service';
 
 declare const countdown;
 
@@ -15,19 +14,23 @@ declare const countdown;
     styleUrls: ['./pre-event.component.scss'],
 })
 export class PreEventComponent implements OnInit, AfterViewInit, OnDestroy {
-
+    eventStartDate$: Observable<Date>;
     eventStartDate: Date;
-    isEventOpen: boolean;
 
     tidioSub: Subscription;
+    onDestroy$ = new Subject();
 
     constructor(
         private tidioService: TidioService,
-        private userDataService: UserDataService
+        private userDataService: UserDataService,
+        private uiService: UiService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
-        this.initWebsocket();
+        this.getAppSettings();
+        this.listenToLoginState();
+        this.eventStartDate$ = this.uiService.getEventDateState$();
     }
 
     ngAfterViewInit(): void {
@@ -39,52 +42,32 @@ export class PreEventComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.tidioSub.unsubscribe();
-    }
-
-    initWebsocket(): void {
-        window['Pusher'] = Pusher;
-        window['Echo'] = new Echo({
-          broadcaster: 'pusher',
-          key: environment.pusher.key,
-          cluster: environment.pusher.cluster,
-          wsHost: environment.pusher.host,
-          wsPort: environment.pusher.port,
-          wssPort: environment.pusher.port,
-          disableStats: true,
-          encrypted: false,
-          auth: {
-            headers: {
-              'X-CSRF-TOKEN': document
-                .querySelector('meta[name="csrf"]')
-                .getAttribute('content'),
-            },
-          },
-        });
-
-        window['Echo']
-          .channel('V2F2ZXBsYXlQdWJsaWM=')
-          .listen('WaveplayEvent', (e) => {
-            if (e.payload.target == 'event.start_at') {
-                this.getAppSettings();
-            }
-          });
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 
     private getAppSettings() {
-        this.userDataService.appStateV1().subscribe((r) => {
-            this.eventStartDate = new Date(
-                r.data.event.start_at.replace(/-/g, '/')
-            );
-            this.isEventOpen = isAfter(new Date(), this.eventStartDate);
-
-            if (r.data.event.config.login.state) {
-                // TODO: Navigate to landing/login page
-            }
-            this.countdownToEvent();
-        });
+        this.uiService.getEventDateState$()
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe(date => {
+                this.eventStartDate = date;
+                this.countdownToEvent();
+            })
     }
 
     private countdownToEvent() {
         // TODO: Implement fn
+    }
+
+    private listenToLoginState(): void {
+        this.uiService
+            .getEventState$()
+            .pipe(distinctUntilChanged(), takeUntil(this.onDestroy$))
+            .subscribe((state) => {
+                if (state) {
+                    // TODO: set landing route
+                    this.router.navigate(['']);
+                }
+            });
     }
 }
