@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isAfter } from 'date-fns';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 import { Settings } from '../../shared/models/settings.model';
@@ -8,7 +9,8 @@ import { UiService } from './ui.service';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
-    settings: BehaviorSubject<Settings> = new BehaviorSubject<Settings>(null);
+    private settings: BehaviorSubject<Settings> = new BehaviorSubject<Settings>(null);
+    private settingsV1: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
     constructor(
         private userDataService: UserDataService,
@@ -109,5 +111,34 @@ export class SettingsService {
 
     getSettingsSnapshot(): any {
         return this.settings.getValue();
+    }
+
+
+    requestV1AppSettings$(): Observable<any> {
+        return this.userDataService.appStateV1().pipe(
+            map((res) => res.data.event),
+            take(1),
+            tap((settings) => {
+                this.settingsV1.next(settings);
+                this.initEventState$(settings);
+            })
+        );
+    }
+
+    initEventState$(settings: any): void {
+        const eventStartDate = new Date(settings.start_at.replace(/-/g, '/'));
+        // TODO: set server date
+        const isEventOpenByDate = isAfter(new Date(), eventStartDate);
+        const isEventOpen = isEventOpenByDate || settings.config.login.state;
+        this.uiService.setEventState(isEventOpen);
+        this.uiService.setEventDateState(eventStartDate);
+    }
+
+    getV1AppSettings$(): Observable<any> {
+        return this.settingsV1.asObservable();
+    }
+
+    getV1AppSettingsSnapshot(): any {
+        return this.settingsV1.getValue();
     }
 }
