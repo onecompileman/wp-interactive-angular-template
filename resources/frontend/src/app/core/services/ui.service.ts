@@ -11,7 +11,7 @@ export class UiService {
     liveUpdateMessageSubject: BehaviorSubject<string> = new BehaviorSubject<string>(
         ''
     );
-    lobbyAvailabilitySubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    lobbyStateSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
         false
     );
     lobbyBgmSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
@@ -58,16 +58,16 @@ export class UiService {
         return this.liveUpdateMessageSubject.asObservable();
     }
 
-    setLobbyAvailability(state: boolean): void {
-        this.lobbyAvailabilitySubject.next(state);
+    setLobbyState(state: boolean): void {
+        this.lobbyStateSubject.next(state);
     }
 
-    getLobbyAvailability$(): Observable<boolean> {
-        return this.lobbyAvailabilitySubject.asObservable();
+    getLobbyState$(): Observable<boolean> {
+        return this.lobbyStateSubject.asObservable();
     }
 
-    getLobbyAvailability(): boolean {
-        return this.lobbyAvailabilitySubject.getValue();
+    getLobbyState(): boolean {
+        return this.lobbyStateSubject.getValue();
     }
 
     setLobbyBgmState(state: boolean): void {

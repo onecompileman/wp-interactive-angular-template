@@ -229,7 +229,7 @@ export class WebsocketService {
                     this.uiService.setLivestreamReminderState(e.payload.state);
                     break;
                 case 'lobby':
-                    this.uiService.setLobbyAvailability(e.payload.state);
+                    this.uiService.setLobbyState(e.payload.state);
                     break;
                 case 'bgm':
                     this.uiService.setLobbyBgmState(e.payload.state);

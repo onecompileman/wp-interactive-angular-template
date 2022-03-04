@@ -29,7 +29,7 @@ export class SettingsService {
                     return;
                 }
                 // LOBBY STATE
-                this.uiService.setLobbyAvailability(
+                this.uiService.setLobbyState(
                     settings.config.lobby.state
                 );
 
